@@ -16,8 +16,13 @@ set -e
 tabs 4
 
 # get source directory
-export ISAACLAB_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+if [ -n "$ZSH_VERSION" ]; then
+    SCRIPT_PATH="${(%):-%x}"
+else
+    SCRIPT_PATH="${BASH_SOURCE[0]}"
+fi
 
+SCRIPT_DIR="$( cd "$( dirname "$SCRIPT_PATH" )" && pwd )"
 #==
 # Helper functions
 #==
